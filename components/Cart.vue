@@ -46,7 +46,7 @@ onMounted(() => {
               class="productRemove"
               @click="cartStore.removeProduct(item.id)"
             >
-            <Icon :icon="'pajamas:remove'" class="w-6 h-6" />
+            <Icon :icon="'pajamas:remove'" class="w-4 h-4" />
             </button>
           </div>
         </template>
