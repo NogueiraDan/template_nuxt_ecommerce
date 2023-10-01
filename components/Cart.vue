@@ -1,4 +1,5 @@
 <script setup>
+import { Icon } from "@iconify/vue";
 import { inject } from "vue";
 const { open, setOpen } = inject("open");
 import { storeToRefs } from "pinia";
@@ -16,7 +17,9 @@ onMounted(() => {
   <div class="cart">
     <div class="cartHeader">
       <p>Cart</p>
-      <button @click="setOpen">Fechar</button>
+      <button @click="setOpen">
+        <Icon :icon="'ion:close-outline'" class="w-8 h-8" />
+      </button>
     </div>
 
     <template v-if="totalCart">
@@ -43,7 +46,7 @@ onMounted(() => {
               class="productRemove"
               @click="cartStore.removeProduct(item.id)"
             >
-              Remover
+            <Icon :icon="'pajamas:remove'" class="w-6 h-6" />
             </button>
           </div>
         </template>
@@ -124,8 +127,9 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  font-weight: 500;
-  width: 60%;
+  font-weight: 600;
+  width: 50%;
+  padding: 0 10px;
 }
 .productRemove {
   cursor: pointer;
@@ -133,6 +137,7 @@ onMounted(() => {
 .checkoutProductQuantity {
   width: 55px;
   padding: 0 5px;
+  margin:0 20px 0 10px;
   height: 40px;
   flex-shrink: 0;
   border-radius: 8px;
@@ -155,7 +160,7 @@ onMounted(() => {
   height: 40px;
   border-radius: 5px;
   border: 0;
-  background-color: #115d8c;
+  background-color: #8D28BD;
   cursor: pointer;
   color: #fff;
   font-weight: bold;

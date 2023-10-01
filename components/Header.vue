@@ -24,8 +24,8 @@
         class="inline-block nav-link text-primary group cursor-pointer"
       >
         <div class="flex items-center space-x-2">
-          <Icon :icon="'raphael:cart'" class="w-4 h-4" />
-          <p class="bg-white text-primary font-bold w-6 h-6 text-center">
+          <Icon :icon="'raphael:cart'" class="w-6 h-6" />
+          <p class="bg-white text-primary text-xl font-bold w-6 h-6 text-center">
             {{ totalCart }}
           </p>
         </div>
