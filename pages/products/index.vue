@@ -17,7 +17,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-10 lg:mt-20">
           <template
             v-for="(product, i) in products.data"
-            :key="`product-${i}-${p.id}`"
+            :key="`product-${i}-${product.id}`"
           >
             <Discount
               class="lg:col-span-2 rounded bg-slate-900 text-white p-10"
