@@ -52,6 +52,15 @@ const limitString = (str, maxLength) => {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+.product:hover {
+  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .placeholder-image {
@@ -78,5 +87,6 @@ const limitString = (str, maxLength) => {
   font-weight: bold;
 }
 
-@media (min-width: 320px) and (max-width: 1025px) {}
+@media (min-width: 320px) and (max-width: 1025px) {
+}
 </style>
