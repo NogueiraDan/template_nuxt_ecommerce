@@ -3,7 +3,7 @@ import { storeToRefs } from "pinia";
 import { useCartStore } from "~/store/cartStore";
 
 const cartStore = useCartStore();
-const { totalCart } = storeToRefs(cartStore);
+const { totalCart, calculateSubtotal } = storeToRefs(cartStore);
 
 onMounted(() => {
   cartStore.loadCartFromLocalStorage();
@@ -36,12 +36,22 @@ const limitString = (str, maxLength) => {
               <img :src="item.image" class="checkoutProductImage" />
               <span>{{ limitString(item.title, 30) }}</span>
               <div class="checkoutProductQuantity">
-                <span class="quantitySelector"> - </span>
+                <span
+                  class="quantitySelector"
+                  @click="cartStore.decrementQuantity(item.id)"
+                >
+                  -
+                </span>
                 <p>{{ item.quantity }}</p>
-                <span class="quantitySelector"> + </span>
+                <span
+                  class="quantitySelector"
+                  @click="cartStore.incrementQuantity(item.id)"
+                >
+                  +
+                </span>
               </div>
               <div>
-                <p class="checkoutProductPrice">R$ {{ item.price }}</p>
+                <p class="checkoutProductPrice">R${{ item.price }}/UN</p>
               </div>
             </div>
           </template>
@@ -51,7 +61,7 @@ const limitString = (str, maxLength) => {
           <h2 class="checkoutRightTitle">Resumo do Pedido</h2>
           <div class="checkoutSummaryPriceWrapper">
             <p class="checkoutSummaryPrice">SUBTOTAL DE PRODUTOS</p>
-            <p class="checkoutSummaryPrice">R$ 100,00</p>
+            <p class="checkoutSummaryPrice">R$ {{ calculateSubtotal }}</p>
           </div>
           <div class="checkoutSummaryPriceWrapper">
             <p class="checkoutSummaryPrice">ENTREGA</p>
@@ -60,7 +70,9 @@ const limitString = (str, maxLength) => {
 
           <div class="checkoutSummaryTotalWrapper">
             <p class="checkoutSummaryTotal">TOTAL</p>
-            <p class="checkoutSummaryTotal">R$ 120,00</p>
+            <p class="checkoutSummaryTotal">
+              R$ {{ (calculateSubtotal + 20).toFixed(2) }}
+            </p>
           </div>
 
           <button class="finishOrder">FINALIZAR A COMPRA</button>

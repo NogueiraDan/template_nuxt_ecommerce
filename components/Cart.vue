@@ -3,10 +3,10 @@ import { Icon } from "@iconify/vue";
 import { inject } from "vue";
 const { open, setOpen } = inject("open");
 import { storeToRefs } from "pinia";
-import {useCartStore} from "~/store/cartStore";
+import { useCartStore } from "~/store/cartStore";
 
 const cartStore = useCartStore();
-const { totalCart } = storeToRefs(cartStore);
+const { totalCart, calculateSubtotal } = storeToRefs(cartStore);
 
 onMounted(() => {
   cartStore.loadCartFromLocalStorage();
@@ -16,7 +16,7 @@ onMounted(() => {
 <template>
   <div class="cart">
     <div class="cartHeader">
-      <p>Cart</p>
+      <p>Minha sacola</p>
       <button @click="setOpen">
         <Icon :icon="'ion:close-outline'" class="w-8 h-8" />
       </button>
@@ -37,16 +37,26 @@ onMounted(() => {
             </div>
 
             <div class="checkoutProductQuantity">
-              <span class="quantitySelector" @click="cartStore.decrementQuantity(item.id)"> - </span>
+              <span
+                class="quantitySelector"
+                @click="cartStore.decrementQuantity(item.id)"
+              >
+                -
+              </span>
               <p>{{ item.quantity }}</p>
-              <span class="quantitySelector" @click="cartStore.incrementQuantity(item.id)"> + </span>
+              <span
+                class="quantitySelector"
+                @click="cartStore.incrementQuantity(item.id)"
+              >
+                +
+              </span>
             </div>
 
             <button
               class="productRemove"
               @click="cartStore.removeProduct(item.id)"
             >
-            <Icon :icon="'pajamas:remove'" class="w-4 h-4" />
+              <Icon :icon="'pajamas:remove'" class="w-4 h-4" />
             </button>
           </div>
         </template>
@@ -58,7 +68,7 @@ onMounted(() => {
             </span>
           </div>
           <div>
-            <span>{{ totalCart }}</span>
+            <span>R${{ calculateSubtotal }}</span>
           </div>
         </div>
 
@@ -82,7 +92,6 @@ onMounted(() => {
   background-color: #fff;
   -webkit-box-shadow: 0px 0px 7px -5px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 0px 7px -5px rgba(0, 0, 0, 0.5);
-  padding: 10px;
   width: 35%;
   height: 100vh;
   overflow-y: scroll;
@@ -95,6 +104,10 @@ onMounted(() => {
   justify-content: space-between;
   width: 100%;
   border-bottom: 1px solid #e2e2e2;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 60px;
+  padding: 8px;
+  margin-bottom: 12px;
 }
 .cartFooter {
   height: auto;
@@ -137,7 +150,7 @@ onMounted(() => {
 .checkoutProductQuantity {
   width: 55px;
   padding: 0 5px;
-  margin:0 20px 0 10px;
+  margin: 0 20px 0 10px;
   height: 40px;
   flex-shrink: 0;
   border-radius: 8px;
@@ -160,7 +173,7 @@ onMounted(() => {
   height: 40px;
   border-radius: 5px;
   border: 0;
-  background-color: #8D28BD;
+  background-color: #8d28bd;
   cursor: pointer;
   color: #fff;
   font-weight: bold;
