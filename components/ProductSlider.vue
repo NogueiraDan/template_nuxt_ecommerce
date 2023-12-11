@@ -122,5 +122,8 @@ const nextSlide = () => {
   .product-slider {
     width: calc(50% * 2);
   }
+  .slide {
+    flex: 0 0 50%;
+  }
 }
 </style>
