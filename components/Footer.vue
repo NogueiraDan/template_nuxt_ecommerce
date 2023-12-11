@@ -1,10 +1,10 @@
 <script setup>
-import {ref} from "vue"
+import { ref } from "vue";
 const email = ref("");
 
-const subscribe = ()=>{
-  alert(email.value)
-}
+const subscribe = () => {
+  alert(email.value);
+};
 </script>
 
 <template>
@@ -28,13 +28,16 @@ const subscribe = ()=>{
         </div>
       </div>
       <div class="newsletter">
-        <input
-          type="email"
-          v-model="email"
-          placeholder="Digite seu email"
-          class="inputNewsletter"
-        />
-        <button class="btnNewsletter" @click="subscribe">Enviar</button>
+        <span>Assine nossa Newsletter e receba promoções</span>
+        <div class="newsletterContainer">
+          <input
+            type="email"
+            v-model="email"
+            placeholder="Digite seu email"
+            class="inputNewsletter"
+          />
+          <button class="btnNewsletter" @click="subscribe">Enviar</button>
+        </div>
       </div>
     </div>
     <div class="footer-row2">
@@ -48,8 +51,8 @@ const subscribe = ()=>{
 
 <style scoped>
 .footer {
-  height: 300px;
-  padding: 20px;
+  height: auto;
+  padding: 20px 32px;
   background: #f3f3f3;
   display: flex;
   flex-direction: column;
@@ -59,16 +62,18 @@ const subscribe = ()=>{
 .footer-row1 {
   display: flex;
   justify-content: space-between;
-  padding: 0 50px;
+  margin-bottom: 32px;
+  gap: 16px;
 }
 .footer-row2 {
   display: flex;
   justify-content: center;
 }
 
-.storeInfo{
-    font-size: 14px;
-    opacity: 0.9;
+.storeInfo {
+  font-size: 14px;
+  opacity: 0.9;
+  text-align: center;
 }
 .institucionais {
   display: flex;
@@ -77,18 +82,27 @@ const subscribe = ()=>{
 }
 .newsletter {
   width: 50%;
-  display: inherit;
-  justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  /* background-color: #fff; */
+  border-radius: 10px;
+  gap: 12px;
+}
+.newsletterContainer {
+  width: 75%;
+  display: flex;
 }
 
 .inputNewsletter {
   height: 45px;
-  width: 50%;
+  width: 100%;
   border: 0;
   /* border: 1px solid #7b0296; */
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
+  padding-left: 12px;
 }
 
 .btnNewsletter {
@@ -99,13 +113,9 @@ const subscribe = ()=>{
   background-color: #7b0296;
   color: #ffffff;
   font-weight: bold;
-  font-size: 14px; 
+  font-size: 14px;
   border: 0;
   cursor: pointer;
-  
-}
-
-.footer-menu {
 }
 
 .footer-link {
@@ -113,5 +123,25 @@ const subscribe = ()=>{
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
+}
+
+@media (min-width: 320px) and (max-width: 1025px) {
+  .footer-row1 {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0 24px;
+    gap: 8px;
+  }
+  .institucionais {
+    width: 100%;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+  }
+  .newsletter {
+    width: inherit;
+    justify-content: center;
+  }
 }
 </style>

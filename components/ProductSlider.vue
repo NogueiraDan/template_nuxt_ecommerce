@@ -117,4 +117,10 @@ const nextSlide = () => {
 .loop-toggle input[type="checkbox"] {
   margin-right: 5px;
 }
+
+@media (min-width: 320px) and (max-width: 1025px) {
+  .product-slider {
+    width: calc(50% * 2);
+  }
+}
 </style>

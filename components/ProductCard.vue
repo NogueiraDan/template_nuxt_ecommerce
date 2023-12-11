@@ -11,20 +11,22 @@ const limitString = (str, maxLength) => {
   if (str.length <= maxLength) {
     return str;
   } else {
-    return str.slice(0, maxLength) + "..."; 
+    return str.slice(0, maxLength) + "...";
   }
 };
 </script>
 
 <template>
-  <NuxtLink :to="`/products/${product.id}`" :props="{product}">
+  <NuxtLink :to="`/products/${product.id}`" :props="{ product }">
     <div class="product">
       <div class="placeholder-image">
         <img :src="product.image" class="productImage" />
       </div>
 
       <div>
-        <span class="font-bold rainbow-text">{{ limitString(product.title, 25) }}</span>
+        <span class="font-bold rainbow-text">{{
+          limitString(product.title, 25)
+        }}</span>
         <p>
           {{ product.desccription }}
         </p>
@@ -62,7 +64,7 @@ const limitString = (str, maxLength) => {
   width: 50%;
 }
 
-.product-shop{
+.product-shop {
   margin-top: 10px;
   cursor: pointer;
   width: 75%;
@@ -76,5 +78,5 @@ const limitString = (str, maxLength) => {
   font-weight: bold;
 }
 
-
+@media (min-width: 320px) and (max-width: 1025px) {}
 </style>

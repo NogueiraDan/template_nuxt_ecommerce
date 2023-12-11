@@ -219,4 +219,15 @@ const limitString = (str, maxLength) => {
   line-height: 150%; /* 24px */
   text-transform: uppercase;
 }
+
+@media (min-width: 320px) and (max-width: 1024px) {
+  .checkoutWrapper {
+    flex-direction: column;
+    width: 85%;
+  }
+  .checkoutLeft,
+  .checkoutRight {
+    width: 100%;
+  }
+}
 </style>
