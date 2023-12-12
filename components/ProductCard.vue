@@ -1,19 +1,12 @@
 <script setup>
 import { defineProps } from "vue";
+import { limitString } from "../utils";
 const props = defineProps({
   product: {
     type: Object,
   },
 });
 const { product } = props;
-
-const limitString = (str, maxLength) => {
-  if (str.length <= maxLength) {
-    return str;
-  } else {
-    return str.slice(0, maxLength) + "...";
-  }
-};
 </script>
 
 <template>
@@ -25,7 +18,7 @@ const limitString = (str, maxLength) => {
 
       <div>
         <span class="font-bold rainbow-text">{{
-          limitString(product.title, 25)
+          limitString(product.title, 24)
         }}</span>
         <p>
           {{ product.desccription }}
@@ -70,7 +63,7 @@ const limitString = (str, maxLength) => {
 }
 .productImage {
   object-fit: contain;
-  width: 50%;
+  width: 75%;
 }
 
 .product-shop {

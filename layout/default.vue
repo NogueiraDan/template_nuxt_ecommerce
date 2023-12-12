@@ -2,11 +2,11 @@
   <div class="default">
     <Header />
     <slot />
-    <!-- <Footer /> -->
+    <Footer />
   </div>
 </template>
 
-<style scoped>
+<style>
 .default {
   background: #fcfcfc;
   color: #66007d;

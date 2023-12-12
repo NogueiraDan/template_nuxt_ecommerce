@@ -1,21 +1,13 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { useCartStore } from "~/store/cartStore";
-
+import { limitString } from "#imports";
 const cartStore = useCartStore();
 const { totalCart, calculateSubtotal } = storeToRefs(cartStore);
 
 onMounted(() => {
   cartStore.loadCartFromLocalStorage();
 });
-
-const limitString = (str, maxLength) => {
-  if (str.length <= maxLength) {
-    return str;
-  } else {
-    return str.slice(0, maxLength) + "...";
-  }
-};
 </script>
 
 <template>
@@ -26,7 +18,9 @@ const limitString = (str, maxLength) => {
         >Voltar</span
       >
     </NuxtLink>
-    <h1 class="checkoutTitle">Minhas compras</h1>
+    <h1 class="checkoutTitle">
+      Você tem {{ totalCart }} produtos no carrinho!
+    </h1>
 
     <template v-if="totalCart">
       <div class="checkoutWrapper">
@@ -51,7 +45,7 @@ const limitString = (str, maxLength) => {
                 </span>
               </div>
               <div>
-                <p class="checkoutProductPrice">R${{ item.price }}/UN</p>
+                <p class="checkoutProductPrice">R${{ item.price }} / unidade</p>
               </div>
             </div>
           </template>

@@ -4,6 +4,7 @@ import { inject } from "vue";
 const { open, setOpen } = inject("open");
 import { storeToRefs } from "pinia";
 import { useCartStore } from "~/store/cartStore";
+import { limitString } from "#imports";
 
 const cartStore = useCartStore();
 const { totalCart, calculateSubtotal } = storeToRefs(cartStore);
@@ -31,7 +32,7 @@ onMounted(() => {
             </div>
 
             <div class="productName">
-              <p>{{ item.title }}</p>
+              <p>{{ limitString(item.title, 20) }}</p>
               <p>Quantidade: {{ item.quantity }}</p>
               <p>R${{ item.price }}/unidade</p>
             </div>
@@ -122,35 +123,38 @@ onMounted(() => {
 .productWrapper {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 8px;
   margin: 10px 0 30px 0;
   padding: 20px 5px;
   border-bottom: 1px solid #f2f2f2;
   width: 100%;
 }
 .productCartImageWrapper {
-  width: 30%;
+  width: 20%;
 }
 .productCartImage {
   object-fit: cover;
   width: 60%;
   height: auto;
+  margin: 0 auto;
 }
 .productName {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  font-weight: 600;
+  font-weight: 400;
   width: 50%;
   padding: 0 10px;
+  gap: 4px;
 }
 .productRemove {
   cursor: pointer;
+  margin: 0 12px;
 }
 .checkoutProductQuantity {
   width: 55px;
   padding: 0 5px;
-  margin: 0 20px 0 10px;
+
   height: 40px;
   flex-shrink: 0;
   border-radius: 8px;
@@ -169,15 +173,15 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 40px;
+  width: 80%;
+  height: 46px;
   border-radius: 5px;
   border: 0;
   background-color: #8d28bd;
   cursor: pointer;
   color: #fff;
   font-weight: bold;
-  margin: 15px 0 10px 0;
+  margin: 10px auto;
 }
 
 .btnClearCart {

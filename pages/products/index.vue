@@ -2,17 +2,12 @@
   <div>
     <main class="min-h-screen">
       <Header />
-      <section class="lg:px-[15%] px-[5%] pt-20">
+      <section class="lg:px-[15%] pt-5 pb-8">
         <h1
           class="lg:text-6xl text-4xl text-center leading-normal font-bold rainbow-text"
         >
-          Novidades na Loja
+          Veja as novidades da Loja
         </h1>
-        <h2
-          class="lg:text-5xl text-2xl leading-normal font-semibold text-center"
-        >
-          Veja as novidades da nossa loja
-        </h2>
 
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-10 lg:mt-20">
           <template
@@ -26,15 +21,17 @@
             <NuxtLink
               :to="`/products/${product.id}`"
               :class="{ 'lg:col-start-3': i === 0 && !activeCategory }"
-              class="rounded-md bg-white hover:shadow-lg transition-all hover:cursor-pointer"
+              class="rounded-md bg-white hover:shadow-lg transition-all hover:cursor-pointer flex flex-col justify-between"
             >
               <img
                 :src="product.image"
                 :alt="product.title"
-                class="w-full h-[300px] object-contain object-center"
+                class="w-[80%] object-contain object-center mx-auto my-0"
               />
               <div class="p-3">
-                <h2 class="text-xs">{{ product.title }}</h2>
+                <h2 class="text-xs font-medium">
+                  {{ product.title }}
+                </h2>
                 <p class="font-bold text-sm mt-2">
                   {{ formatPrice(product.price) }}
                 </p>

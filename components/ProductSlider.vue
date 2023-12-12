@@ -46,7 +46,7 @@ const nextSlide = () => {
     <h2
       class="py-[10px] text-3xl text-center leading-normal font-bold rainbow-text"
     >
-      {{ category }}
+      {{ category.toUpperCase() }}
     </h2>
     <div class="slider-container">
       <div class="slider" :style="sliderStyle">
